@@ -13,6 +13,7 @@ public class Pellets {
     private ArrayList<double[]> pellets;
     private Environment env;
 
+    private double pelletWeight = 0.05; // g
     private double sinkingSpeed = 0.1; // m/s
 
     public Pellets(Environment env, double[][] positions) {
@@ -63,6 +64,28 @@ public class Pellets {
     public int getPelletCount() {
         return pellets.size();
     }
+
+    /**
+     * Calculate the density matrix for the current pellet distribution.
+     * @param density The matrix to fill with density values. The central x-y cell of the matrix
+     *                is assumed to be at position. The matrix is not assumed to contain zeroes initially.
+     * @param dx The resolution of the density matrix (m)
+     */
+    public void getDensityMatrix(double[][][] density, double dx) {
+        // First fill matrix with zeros:
+        for (int i=0; i<density.length; i++)
+            for (int j=0; j<density[i].length; j++)
+                for (int k=0; k<density[i][j].length; k++)
+                    density[i][j][k] = 0;
+        // Look up each pellet, and add it to the proper cell:
+        for (double[] pos : pellets) {
+            int idx_i = (int)Math.floor(pos[0]/dx);
+            int idx_j = (int)Math.floor(pos[1]/dx);
+            int idx_k = (int)Math.floor(pos[2]/dx);
+            density[idx_i][idx_j][idx_k] += pelletWeight;
+        }
+    }
+
 
     public void writePositions(Writer out, int colCount) throws IOException {
         int count = 0;
