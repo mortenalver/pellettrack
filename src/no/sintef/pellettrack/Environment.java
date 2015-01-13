@@ -6,7 +6,7 @@ package no.sintef.pellettrack;
 public class Environment {
 
     double cageDepth = 15;
-    double turbKappa = 0.1;
+    double turbKappa = 0.2;
 
     public double[] getCurrentSpeed(double[] position) {
         return new double[] {0, 0, 0};

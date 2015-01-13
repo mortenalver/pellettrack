@@ -28,12 +28,12 @@ public class Main {
 
         FileWriter fw = new FileWriter(new File("pellets.csv"));
 
-        double[][][] density = new double[7][7][7];
-        double resolution = 2;
+        double[][][] density = new double[16][16][16];
+        double resolution = 0.5;
         int storeCount = 10000;
         double dt = 1, t0 = 0;
         int nTimes = 200;
-        int nPell = 1000;
+        int nPell = 10000;
 
         NetcdfFileWriter nc = makeNcFile("densities.nc", density);
 

@@ -84,7 +84,7 @@ public class Pellets {
         for (double[] pos : pellets) {
             int idx_i = (int)Math.floor(pos[0]/dx + c_x);
             int idx_j = (int)Math.floor(pos[1]/dx + c_y);
-            int idx_k = (int)Math.floor(pos[2]/dx + c_z);
+            int idx_k = (int)Math.floor(pos[2]/dx);
             if (idx_i >= 0 && idx_j >= 0 && idx_k >= 0 && idx_i < density.length && idx_j < density[0].length &&
                     idx_k < density[0][0].length)
                 density[idx_i][idx_j][idx_k] += pelletWeight;

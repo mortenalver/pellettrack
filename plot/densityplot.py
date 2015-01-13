@@ -11,7 +11,7 @@ print vFeed.shape
 
 for i in range(0,4):
     plt.subplot(2,2,1+i)
-    toPlot = vFeed[0,:,:,i*2]
+    toPlot = vFeed[0,:,:,1+i*3]
     im = plt.imshow(toPlot)
 
 plt.show()
