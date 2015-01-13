@@ -78,10 +78,13 @@ public class Pellets {
                 for (int k=0; k<density[i][j].length; k++)
                     density[i][j][k] = 0;
         // Look up each pellet, and add it to the proper cell:
+        double c_x = 0.5*density.length,
+                c_y = 0.5*density[0].length,
+                c_z = 0.5*density[0][0].length;
         for (double[] pos : pellets) {
-            int idx_i = (int)Math.floor(pos[0]/dx);
-            int idx_j = (int)Math.floor(pos[1]/dx);
-            int idx_k = (int)Math.floor(pos[2]/dx);
+            int idx_i = (int)Math.floor(pos[0]/dx + c_x);
+            int idx_j = (int)Math.floor(pos[1]/dx + c_y);
+            int idx_k = (int)Math.floor(pos[2]/dx + c_z);
             if (idx_i >= 0 && idx_j >= 0 && idx_k >= 0 && idx_i < density.length && idx_j < density[0].length &&
                     idx_k < density[0][0].length)
                 density[idx_i][idx_j][idx_k] += pelletWeight;
